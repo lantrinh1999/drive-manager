@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DriveController extends Controller
 {
@@ -14,7 +15,11 @@ class DriveController extends Controller
      */
     public function index()
     {
-        //
+        $dir = '/';
+        $recursive = false; // Có lấy file trong các thư mục con không?
+        $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+        return $contents->where('type', '=', 'file');
+
     }
 
     /**
