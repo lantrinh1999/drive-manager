@@ -18,8 +18,10 @@ class DriveController extends Controller
         $dir = '/';
         $recursive = false; // Có lấy file trong các thư mục con không?
         $contents = collect(Storage::cloud()->listContents($dir, $recursive));
-        return $contents->where('type', '=', 'file');
-
+        $contents->where('type', '=', 'file');
+        $contents = (json_decode($contents));
+        // dd($contents);
+        return view('drives.index', compact('contents'));
     }
 
     /**

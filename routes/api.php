@@ -20,3 +20,11 @@ Route::group(['prefix' => 'drive', 'namespace' => 'Api', 'as' => 'drive.'], func
     Route::get('/', 'DriveController@index')->name('index');
 
 });
+
+Route::get('dw/{idir}', function ($idir) {
+    $p = explode('.', $idir);
+    if (!empty($p[1])) {
+        $p[1] = null;
+    }
+    return download($p[0], '');
+})->name('dw');
