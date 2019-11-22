@@ -23,6 +23,6 @@ if (!function_exists('download')) {
         $rawData = Storage::cloud()->get($file['path']);
         return response($rawData, 200)
             ->header('Content-Type', $file['mimetype'])
-            ->header('Content-Disposition', "attachment; filename='" . $file['name'] . "'");
+            ->header('Content-Disposition', "attachment; filename=" . $file['name']);
     }
 }
